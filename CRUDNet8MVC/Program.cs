@@ -1,4 +1,9 @@
+using CRUDNet8MVC.Data;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
+//configuramos la conexion a sql server local
+builder.Services.AddDbContext<AplicationDBContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("ConecctionSQL")));
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
