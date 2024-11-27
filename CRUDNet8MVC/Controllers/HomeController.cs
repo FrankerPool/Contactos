@@ -15,12 +15,29 @@ namespace CRUDNet8MVC.Controllers
             _context = context;
             ///_logger = logger;
         }
-
+        [HttpGet]
         public async Task<IActionResult> Index()
         {
             return View(await _context.ModelContact.ToListAsync());
         }
-
+        [HttpGet]
+        public IActionResult Create()
+        {
+            return View();
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Create(Contact contact)
+        {
+            if (ModelState.IsValid)
+            {
+                contact.CreationDate = DateTime.Now;
+                _context.ModelContact.Add(contact);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+            }
+            return View();
+        }
         public IActionResult Privacy()
         {
             return View();
