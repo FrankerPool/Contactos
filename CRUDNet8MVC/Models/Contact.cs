@@ -14,6 +14,6 @@ namespace CRUDNet8MVC.Models
         public string PhoneNumberMobile {  get; set; }
         [Required(ErrorMessage = "Email is REQUIRED")]
         public string Email { get; set; }
-        public DateTime creationDate { get; set; }
+        public DateTime CreationDate { get; set; }
     }
 }
